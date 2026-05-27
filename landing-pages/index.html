@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clay Landing Pages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #07080D;
+      color: #F5F2ED;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .logo { margin-bottom: 48px; }
+    .logo img { height: 28px; }
+    h1 { font-size: 14px; font-weight: 600; color: #8A8FA8; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 32px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 860px;
+    }
+    a.card {
+      background: #0E1016;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: #F5F2ED;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    a.card:hover {
+      border-color: rgba(249,115,22,0.4);
+      transform: translateY(-2px);
+    }
+    .card-name { font-weight: 800; font-size: 18px; margin-bottom: 4px; }
+    .card-title { font-size: 13px; color: #8A8FA8; }
+    .card-company { font-size: 13px; color: #F97316; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="https://cdn.prod.website-files.com/61477f2c24a826836f969afe/6778506d788ebf16fef48551_Clay%20primary%20logo.png" alt="Clay">
+  </div>
+  <h1>Personalized Landing Pages</h1>
+  <div class="grid">
+    <a class="card" href="/sarah-mitchell.html">
+      <div class="card-name">Sarah Mitchell</div>
+      <div class="card-title">VP of Revenue Operations</div>
+      <div class="card-company">Retool</div>
+    </a>
+    <a class="card" href="/marcus-chen.html">
+      <div class="card-name">Marcus Chen</div>
+      <div class="card-title">Head of Growth</div>
+      <div class="card-company">Linear</div>
+    </a>
+    <a class="card" href="/emily-rodriguez.html">
+      <div class="card-name">Emily Rodriguez</div>
+      <div class="card-title">Director of Sales Development</div>
+      <div class="card-company">Loom</div>
+    </a>
+    <a class="card" href="/james-okonkwo.html">
+      <div class="card-name">James Okonkwo</div>
+      <div class="card-title">GTM Engineer</div>
+      <div class="card-company">Webflow</div>
+    </a>
+    <a class="card" href="/rachel-goldstein.html">
+      <div class="card-name">Rachel Goldstein</div>
+      <div class="card-title">VP of Sales</div>
+      <div class="card-company">Airtable</div>
+    </a>
+    <a class="card" href="/patrik-peitsmeyer.html">
+      <div class="card-name">Patrik Peitsmeyer</div>
+      <div class="card-title">Head of Sales Germany</div>
+      <div class="card-company">WeWork</div>
+    </a>
+  </div>
+</body>
+</html>
