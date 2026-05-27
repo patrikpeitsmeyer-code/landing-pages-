@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clay × Patrik Peitsmeyer — WeWork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* === TOKENS === */
+    :root {
+      --bg:          #FFFFFF;
+      --bg-alt:      #F5F5F7;
+      --bg-dark:     #0A1628;
+      --text:        #111827;
+      --text-muted:  #6B7280;
+      --text-light:  #9CA3AF;
+      --blue:        #0079C1;
+      --blue-dark:   #005A91;
+      --blue-light:  #E8F4FD;
+      --border:      #E5E7EB;
+      --radius:      12px;
+      --radius-sm:   8px;
+      --font:        'DM Sans', sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === NAV === */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo svg {
+      height: 68px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-btn {
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* === HERO === */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -180px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,121,193,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-ghost {
+      position: absolute;
+      right: 3%;
+      bottom: -2%;
+      font-size: 22vw;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: rgba(0,121,193,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-light);
+      color: var(--blue);
+      border: 1px solid rgba(0,121,193,0.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      margin-bottom: 36px;
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 44px;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,121,193,0.25);
+    }
+    .hero-cta .arrow { font-size: 1.05em; }
+
+    /* === STATS === */
+    .stats {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-item {
+      padding: 44px 32px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-val {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-lbl {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* === CONTENT SECTIONS === */
+    .section {
+      padding: 100px 5%;
+    }
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .section-alt { background: var(--bg-alt); }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section-h {
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 64px;
+    }
+
+    /* === PAIN CARDS === */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .pain-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .pain-card:hover {
+      border-color: rgba(0,121,193,0.3);
+      box-shadow: 0 4px 24px rgba(0,121,193,0.08);
+    }
+
+    .pain-num {
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(0,121,193,0.08);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      transition: color 0.2s;
+    }
+    .pain-card:hover .pain-num { color: rgba(0,121,193,0.15); }
+
+    .pain-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--text);
+      line-height: 1.35;
+      padding-right: 56px;
+    }
+    .pain-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* === FEATURES === */
+    .feat-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feat-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+    .feat-row:last-child { border-bottom: 1px solid var(--border); }
+
+    .feat-row-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .feat-row-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+    .feat-row-body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      padding-top: 28px;
+    }
+
+    /* === SOCIAL PROOF === */
+    .proof {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 5%;
+      background: var(--bg);
+    }
+    .proof-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .proof-left h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .proof-left p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .g2-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFF8F0;
+      border: 1px solid #FED7AA;
+      color: #C2410C;
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.825rem;
+      font-weight: 700;
+    }
+
+    .logos-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px 24px;
+      align-items: center;
+    }
+    .logo-svg {
+      width: 36px;
+      height: 36px;
+      fill: #C4C9D4;
+      display: block;
+      margin: 0 auto;
+      transition: fill 0.2s;
+    }
+    .logo-svg:hover { fill: #6B7280; }
+    .company-wordmark {
+      display: block;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #C4C9D4;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .company-wordmark:hover { color: #6B7280; }
+
+    /* === CTA FOOTER === */
+    .cta-footer {
+      background: var(--bg-dark);
+      padding: 130px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-footer::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,121,193,0.28) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-ghost {
+      position: absolute;
+      bottom: -4%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20vw;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: rgba(255,255,255,0.02);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .cta-footer-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-footer h2 {
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+    .cta-footer p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 44px;
+      line-height: 1.7;
+    }
+    .cta-footer .hero-cta {
+      background: var(--blue);
+    }
+    .cta-footer .hero-cta:hover {
+      background: var(--blue-dark);
+      box-shadow: 0 8px 32px rgba(0,121,193,0.4);
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim   { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+    .anim-1 { animation-delay: 0.05s; }
+    .anim-2 { animation-delay: 0.18s; }
+    .anim-3 { animation-delay: 0.32s; }
+    .anim-4 { animation-delay: 0.46s; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3),
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-right: none; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .feat-row { grid-template-columns: 1fr; gap: 8px; }
+      .feat-row-body { padding-top: 0; }
+      .proof-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-ghost { display: none; }
+    }
+    @media (max-width: 600px) {
+      .logos-wrap { grid-template-columns: repeat(3, 1fr); }
+      .hero { padding: 80px 5% 60px; }
+      nav { padding: 0 4%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo" aria-label="WeWork">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" aria-hidden="true"><path d="M10.787 29.636c.576.14.902.26 1.38 1.108 1.662 3.053 3.335 6.4 4.943 9.724.206.174.435.206.793.206.337 0 .565-.033.782-.206l3.683-6.877c1.02 1.88 2.78 5.29 3.487 6.877.196.174.435.206.77.206s.587-.033.782-.206c1.423-3.107 2.977-6.323 4.54-9.322.543-1.076.782-1.37 1.9-1.575l.478-.076c.272-.272.196-.902-.098-1.032-.75.065-1.63.087-2.607.087-.847 0-1.65-.022-2.77-.087-.337.13-.337.815-.13 1.032l.576.11c.587.12.847.272.847.413 0 .206-.098.608-.315 1.13-.543 1.358-1.065 2.792-1.9 4.487-.75-1.412-1.684-3.314-2.303-4.715-.196-.49-.272-.674-.272-.902 0-.152.467-.293 1.26-.435l.5-.076c.24-.12.272-1-.098-1.032-2.162.065-3.857.087-5.997.087h-6.845c-1.423 0-2.5-.022-3.9-.087-.348.14-.348.793-.11 1.032zm7.68 0c.62 0 1.162.022 1.63.11.674.12 1.26 1.065 1.26 1.52 0 .228 0 .49-.098.88-.174.587-1.315 2.694-1.793 3.487-.576-.934-1.934-3.574-2.4-4.596-.206-.435-.304-.793-.304-.967-.022-.326.62-.435 1.706-.435zm20.588 11.038c2.032 0 4.54-.847 5.932-3.335 0-.5-.51-.74-.88-.684-.913 1.358-2.205 1.52-3.15 1.52-3.15 0-4.78-2.14-4.78-4.324 0-.467.076-.532.847-.532H43.5c1.054 0 1.217-.413 1.217-.967 0-2.25-1.9-4.215-5.42-4.215-4.226 0-7.312 2.868-7.312 6.562.033 3.194 2.5 5.975 7.062 5.975zm.043-11.18c1.152 0 1.793.64 1.793 1.608 0 .293-.076.598-.228.674-.38.206-.913.26-1.39.26h-1.26c-1.086 0-1.564-.022-1.564-.435.01-.945 1.228-2.108 2.65-2.108zm6.66.14c.587.14.913.26 1.39 1.108 1.662 3.053 3.325 6.4 4.943 9.724.206.174.435.206.782.206.337 0 .565-.033.782-.206l3.694-6.877c1 1.88 2.77 5.29 3.487 6.877.206.174.435.206.77.206s.587-.033.782-.206c1.423-3.107 2.977-6.323 4.54-9.322.543-1.076.77-1.37 1.9-1.575l.478-.076c.272-.272.196-.902-.11-1.032-.75.065-1.63.087-2.607.087-.847 0-1.65-.022-2.77-.087-.337.13-.337.815-.13 1.032l.576.11c.576.12.847.272.847.413 0 .206-.098.608-.304 1.13-.543 1.358-1.086 2.792-1.9 4.487-.75-1.412-1.684-3.314-2.303-4.715-.206-.49-.272-.674-.272-.902 0-.152.467-.293 1.26-.435l.5-.076c.24-.12.282-1-.098-1.032-2.162.065-3.857.087-5.997.087H49.15c-1.423 0-2.5-.022-3.9-.087-.337.14-.337.793-.098 1.032zm7.692 0c.62 0 1.162.022 1.63.11.674.12 1.26 1.065 1.26 1.52 0 .228 0 .49-.098.88-.174.587-1.315 2.694-1.793 3.487-.587-.934-1.934-3.574-2.4-4.596-.206-.435-.304-.793-.304-.967-.022-.326.62-.435 1.706-.435zm21.305 11.038c4.16 0 7.78-2.02 7.78-6.3 0-4.128-3.596-6.236-7.583-6.236-3.998 0-7.822 2.314-7.8 6.497.043 4.042 3.553 6.04 7.594 6.04zm0-11.18c1.923 0 2.868 2.455 2.912 5.29.022 2.64-.62 4.54-2.553 4.54-1.956 0-3.075-2.26-3.075-5.334 0-3.183 1.228-4.498 2.716-4.498zm13.56 1.162c.206 0 .51.022 1.282.587.435.36.847.532 1.315.532 1.086 0 2.173-.554 2.173-1.9 0-1.108-.956-1.727-1.87-1.727-1.423 0-2.4.967-3.314 1.467-.272-.054-.337-.14-.337-.348 0-.26.076-.674.13-1.26-.13-.174-.337-.272-.598-.272-1.054.598-3.4 1.38-4.954 1.77-.228.174-.228.695 0 .88l.49.26c.64.348.64.695.64 1.88v4.422c0 2.042-.13 2.314-1.26 2.4l-.64.054c-.272.185-.272.847.033 1.032 1.12-.065 2.607-.087 3.998-.087 1.586 0 2.944.022 4.574.087.304-.185.304-.847.022-1.032l-1.086-.076c-1.12-.087-1.26-.326-1.26-2.38v-4.51c.01-1.13.185-1.782.663-1.782zm13.255 8.572l-.435.087c-.282.26-.206.87.13 1.02.956-.054 2.162-.087 4.172-.087 1.966 0 3.216.022 4.26.087.337-.11.413-.815.13-1.02l-.5-.087c-.88-.14-1.52-.293-1.988-.674-.847-.674-3.835-4.66-4.433-5.595-.185-.228-.25-.402-.25-.49s.033-.206.196-.39c.478-.402 1-.847 2.27-1.695.902-.608 1.63-.902 2.27-1.02l1.076-.206c.24-.228.206-.88-.13-1.02a55.67 55.67 0 0 1-6.399.413h-.804c-.337.13-.38.76-.076 1.02l.847.13c.304.022.64.14.64.282 0 .185-.163.49-.804 1.162l-1.423 1.456a2.67 2.67 0 0 1-1.966.815c-.37 0-.478-.087-.478-.413v-9.19c0-1.847.043-3.075.11-4.28-.13-.152-.38-.206-.587-.206-1.727.64-3.792 1.347-5.182 1.63-.24.185-.24.706 0 .88l.576.293c.674.348.674.674.674 1.847V36.85c0 2.042-.13 2.282-1.37 2.4l-.64.054c-.272.174-.272.847.033 1.02 1.184-.054 2.575-.087 4.128-.087 1.564 0 2.977.022 4.063.087.293-.174.293-.847.022-1.02l-.543-.054c-1.195-.13-1.325-.36-1.325-2.4v-1.695c0-.554.174-.695.402-.695.337 0 .608.12.847.435l2.423 3.162c.272.348.576.815.576.945.033.12-.163.174-.51.228z" fill="#1a1a1a"/></svg>
+    </a>
+    <a href="#tour" class="nav-btn">Book a Tour</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-ghost">ww</div>
+    <div class="hero-inner">
+
+      <div class="hero-badge anim anim-1">
+        <span class="dot"></span>
+        Prepared for Patrik Peitsmeyer &nbsp;·&nbsp; Head of Sales Germany, WeWork
+      </div>
+
+      <h1 class="anim anim-2">
+        Close more enterprise deals in Germany —<br>
+        with the <em>data intelligence</em> to back it up.
+      </h1>
+
+      <p class="hero-sub anim anim-3">
+        WeWork helps companies find the space to do their best work. Clay helps sales teams like yours find the right companies, reach them at the right moment, and win more — with better data and far less manual effort.
+      </p>
+
+      <a href="#tour" class="hero-cta anim anim-4">
+        Book a Tour <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item reveal">
+      <div class="stat-val">3×</div>
+      <div class="stat-lbl">more enrichment coverage</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-val">80%</div>
+      <div class="stat-lbl">less manual research time</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-val">150+</div>
+      <div class="stat-lbl">data providers, waterfalled</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-val">4.9</div>
+      <div class="stat-lbl">stars on G2</div>
+    </div>
+  </div>
+
+  <!-- PAIN -->
+  <div class="section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">The Problem</div>
+      <h2 class="section-h reveal">Selling enterprise workspace in Germany<br>is harder than it needs to be.</h2>
+      <p class="section-sub reveal">You're covering an entire country with high-value deals, complex buyers, and a team that can't afford to spend cycles on the wrong prospects.</p>
+
+      <div class="pain-grid">
+        <div class="pain-card reveal">
+          <span class="pain-num">01</span>
+          <h3>Your territory is vast — your pipeline is guesswork</h3>
+          <p>Germany has thousands of potential enterprise accounts. Without the right data, you're either chasing the wrong ones or missing your best fits entirely.</p>
+        </div>
+        <div class="pain-card reveal">
+          <span class="pain-num">02</span>
+          <h3>Enterprise deals demand deep account research</h3>
+          <p>C-suite buyers expect you to know their business before you walk in the door. Building that brief manually eats hours your team doesn't have.</p>
+        </div>
+        <div class="pain-card reveal">
+          <span class="pain-num">03</span>
+          <h3>Outreach feels generic across every account</h3>
+          <p>When every message reads the same, reply rates suffer. Personalisation at scale sounds impossible when you're working from spreadsheets and gut instinct.</p>
+        </div>
+        <div class="pain-card reveal">
+          <span class="pain-num">04</span>
+          <h3>Inbound tour requests go cold before you act</h3>
+          <p>Speed-to-lead matters. When a prospect enquires about a space, you need their full company context instantly — not after 30 minutes of research.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section section-alt">
+    <div class="section-inner">
+      <div class="eyebrow reveal">How Clay Fixes It</div>
+      <h2 class="section-h reveal">One platform that powers your<br>entire sales motion.</h2>
+      <p class="section-sub reveal">Clay is the GTM data platform that automates research, enrichment, and personalisation — so your team can focus on what they do best: closing deals.</p>
+
+      <div class="feat-list">
+        <div class="feat-row reveal">
+          <div>
+            <div class="feat-row-num">Feature 01</div>
+            <div class="feat-row-label">Automated Account Research</div>
+          </div>
+          <p class="feat-row-body">Clay's AI agents research any company in seconds — headcount trends, funding signals, office locations, tech stack, key decision-makers, and more. Your team walks into every call knowing exactly who they're talking to, without spending hours on LinkedIn and Crunchbase beforehand.</p>
+        </div>
+        <div class="feat-row reveal">
+          <div>
+            <div class="feat-row-num">Feature 02</div>
+            <div class="feat-row-label">Personalised Outreach at Scale</div>
+          </div>
+          <p class="feat-row-body">Generate hyper-relevant opening lines and outreach angles for every account in your territory — automatically. Whether you're running 50 accounts or 5,000, Clay makes every message feel hand-crafted without the manual effort. Across English, German, or both.</p>
+        </div>
+        <div class="feat-row reveal">
+          <div>
+            <div class="feat-row-num">Feature 03</div>
+            <div class="feat-row-label">Real-Time Expansion Signals</div>
+          </div>
+          <p class="feat-row-body">Know when a target account is hiring in Germany, raising a new round, opening a new office, or shifting to hybrid — before your competitors do. Clay monitors signals across 150+ data sources and surfaces the ones that matter for workspace sales in real time.</p>
+        </div>
+        <div class="feat-row reveal">
+          <div>
+            <div class="feat-row-num">Feature 04</div>
+            <div class="feat-row-label">Instant Inbound Enrichment</div>
+          </div>
+          <p class="feat-row-body">The moment a prospect requests a tour, Clay enriches their profile automatically — company size, decision-making authority, growth trajectory, and workspace fit. Your team responds to inbound leads with context and confidence, not a cold follow-up script.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="proof">
+    <div class="proof-inner">
+      <div class="proof-left reveal">
+        <h2>Trusted by the best GTM teams in SaaS.</h2>
+        <p>5,000+ companies use Clay to power their revenue operations — from Series A startups to some of the most recognisable names in tech.</p>
+        <div class="g2-chip">⭐ 4.9 / 5 on G2</div>
+      </div>
+      <div class="logos-wrap reveal">
+        <!-- OpenAI -->
+        <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="OpenAI"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+        <!-- Anthropic -->
+        <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Anthropic"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>
+        <!-- Canva -->
+        <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Canva"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM6.962 7.68c.754 0 1.337.549 1.405 1.2.069.583-.171 1.097-.822 1.406-.343.171-.48.172-.549.069-.034-.069 0-.137.069-.206.617-.514.617-.926.548-1.508-.034-.378-.308-.618-.583-.618-1.2 0-2.914 2.674-2.674 4.629.103.754.549 1.646 1.509 1.646.308 0 .65-.103.96-.24.5-.264.799-.47 1.097-.8-.073-.885.704-2.046 1.851-2.046.515 0 .926.205.96.583.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378-.035-.206-.24-.274-.446-.274-.72 0-1.131.994-1.029 1.611.035.275.172.549.447.549.205 0 .514-.31.617-.755.068-.308.343-.514.583-.514.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651 0 .069.034.171.17.171.092 0 .436-.18.777-.459.117-.59.253-1.298.253-1.357.034-.24.137-.48.617-.48.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994.172 0 .309.102.309.274 0 .103 0 .274-.069.446-.137.377-.309.96-.412 1.474 0 .137.035.274.207.274.171 0 .685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202 0-.411.035-.754.104-.994.068-.274.411-.514.617-.514.103 0 .205.069.205.171 0 .035 0 .103-.034.137-.137.446-.24.857-.24 1.269 0 .24.034.582.102.788 0 .034.035.069.07.069.068 0 .548-.445.89-1.028-.308-.206-.48-.549-.48-.96 0-.72.446-1.097.858-1.097.343 0 .617.24.617.72 0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24.293.293 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74.48 0 .924.205.959.582.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172 0-.137.309-.068.274-.376-.034-.206-.24-.275-.446-.275-.686 0-1.13.891-1.028 1.611.034.275.171.583.445.583.206 0 .515-.308.652-.754.068-.274.343-.514.583-.514.103 0 .17.034.205.171 0 .069 0 .206-.137.652-.17.308-.171.48-.137.617.034.274.171.48.309.583.034.034.068.102.068.102 0 .069-.034.138-.137.138-.034 0-.068 0-.103-.035-.514-.205-.72-.548-.789-.891-.205.24-.445.377-.72.377-.445 0-.89-.411-.96-.926a1.609 1.609 0 0 1 .075-.649c-.203.13-.422.203-.623.203h-.17c-.447.652-.927 1.098-1.27 1.303a.896.896 0 0 1-.377.104c-.068 0-.171-.035-.205-.104-.095-.152-.156-.392-.193-.667-.481.527-1.145.805-1.453.805-.343 0-.548-.206-.582-.55v-.376c.102-.754.377-1.2.377-1.337a.074.074 0 0 0-.069-.07c-.24 0-1.028.824-1.166 1.373l-.103.445c-.068.309-.377.515-.582.515-.103 0-.172-.035-.206-.172v-.137l.046-.233c-.435.31-.87.508-1.075.508-.308 0-.48-.172-.514-.412-.206.274-.445.412-.754.412-.352 0-.696-.24-.862-.593-.244.275-.523.553-.852.764-.48.309-1.028.549-1.68.549-.582 0-1.097-.309-1.371-.583-.412-.377-.651-.96-.686-1.509-.205-1.68.823-3.84 2.4-4.8.378-.205.755-.343 1.132-.343zm9.77 3.291c-.104 0-.172.172-.172.343 0 .274.137.583.309.755a1.74 1.74 0 0 0 .102-.583c0-.343-.137-.515-.24-.515z"/></svg>
+        <!-- Ramp -->
+        <span class="company-wordmark">Ramp</span>
+        <!-- Rippling -->
+        <span class="company-wordmark">Rippling</span>
+        <!-- Vanta -->
+        <span class="company-wordmark">Vanta</span>
+        <!-- Intercom -->
+        <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Intercom"><path d="M21 0H3C1.343 0 0 1.343 0 3v18c0 1.658 1.343 3 3 3h18c1.658 0 3-1.342 3-3V3c0-1.657-1.342-3-3-3zm-5.801 4.399c0-.44.36-.8.802-.8.44 0 .8.36.8.8v10.688c0 .442-.36.801-.8.801-.443 0-.802-.359-.802-.801V4.399zM11.2 3.994c0-.44.357-.799.8-.799s.8.359.8.799v11.602c0 .44-.357.8-.8.8s-.8-.36-.8-.8V3.994zm-4 .405c0-.44.359-.8.799-.8.443 0 .802.36.802.8v10.688c0 .442-.36.801-.802.801-.44 0-.799-.359-.799-.801V4.399zM3.199 6c0-.442.36-.8.802-.8.44 0 .799.358.799.8v7.195c0 .441-.359.8-.799.8-.443 0-.802-.36-.802-.8V6zM20.52 18.202c-.123.105-3.086 2.593-8.52 2.593-5.433 0-8.397-2.486-8.521-2.593-.335-.288-.375-.792-.086-1.128.285-.334.79-.375 1.125-.09.047.041 2.693 2.211 7.481 2.211 4.848 0 7.456-2.186 7.479-2.207.334-.289.839-.25 1.128.086.289.336.25.84-.086 1.128zm.281-5.007c0 .441-.36.8-.801.8-.441 0-.801-.36-.801-.8V6c0-.442.361-.8.801-.8.441 0 .801.357.801.8v7.195z"/></svg>
+        <!-- Notion -->
+        <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Notion"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FOOTER -->
+  <div class="cta-footer" id="tour">
+    <div class="cta-ghost">clay</div>
+    <div class="cta-footer-inner">
+      <h2 class="reveal">Ready to see what Clay can do<br>for WeWork's sales team in Germany?</h2>
+      <p class="reveal">A 30-minute session built around your enterprise sales motion. No slides, no fluff — just answers specific to your territory.</p>
+      <a href="#" class="hero-cta reveal">Book a Tour <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
