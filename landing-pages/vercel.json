@@ -1,5 +1,5 @@
 {
-  "redirects": [
-    { "source": "/", "destination": "/sarah-mitchell.html", "permanent": false }
+  "rewrites": [
+    { "source": "/", "destination": "/sarah-mitchell.html" }
   ]
 }
