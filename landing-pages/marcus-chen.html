@@ -6,8 +6,33 @@
   <title>Clay × Marcus Chen — Linear</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* === LINEAR THEME OVERRIDE === */
+    :root {
+      --ink:       #000000;
+      --ink-2:     #080808;
+      --ink-3:     #0F0F0F;
+      --border:    rgba(255,255,255,0.05);
+      --border-hi: rgba(255,255,255,0.09);
+      --clay:      #5E6AD2;
+      --clay-hi:   #7880E0;
+      --cream:     #FFFFFF;
+      --muted:     #737373;
+      --faint:     #262626;
+    }
+    body { font-family: 'Inter', sans-serif !important; }
+    body::before { display: none; }
+    nav { background: rgba(0,0,0,0.90) !important; }
+    .hero-glow { background: radial-gradient(ellipse at center, rgba(94,106,210,0.07) 0%, transparent 65%) !important; }
+    .hero-badge { background: rgba(94,106,210,0.06) !important; border-color: rgba(94,106,210,0.13) !important; }
+    .hero-cta { box-shadow: none !important; border-radius: 6px !important; }
+    .hero-cta:hover { box-shadow: 0 0 40px rgba(94,106,210,0.2) !important; transform: translateY(-1px) scale(1) !important; }
+    .g2-chip { background: rgba(94,106,210,0.08) !important; border-color: rgba(94,106,210,0.18) !important; color: var(--clay-hi) !important; }
+    .cta-bg-text { -webkit-text-stroke: 1px rgba(94,106,210,0.05) !important; }
+    .cta-footer-glow { background: radial-gradient(ellipse, rgba(94,106,210,0.08) 0%, transparent 70%) !important; }
+  </style>
 </head>
 <body>
 

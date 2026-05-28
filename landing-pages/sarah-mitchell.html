@@ -6,8 +6,31 @@
   <title>Clay × Sarah Mitchell — Retool</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* === RETOOL THEME OVERRIDE === */
+    :root {
+      --ink:       #0B0908;
+      --ink-2:     #130F0D;
+      --ink-3:     #1C1714;
+      --border:    rgba(255,255,255,0.06);
+      --border-hi: rgba(255,255,255,0.10);
+      --clay:      #7C3AED;
+      --clay-hi:   #9061F9;
+      --cream:     #F8F5F2;
+      --muted:     #8A8480;
+      --faint:     #3A3230;
+    }
+    nav { background: rgba(11,9,8,0.82) !important; }
+    .hero-glow { background: radial-gradient(ellipse at center, rgba(124,58,237,0.14) 0%, transparent 65%) !important; }
+    .hero-badge { background: rgba(124,58,237,0.07) !important; border-color: rgba(124,58,237,0.2) !important; }
+    .hero-cta { box-shadow: 0 0 52px rgba(124,58,237,0.28), 0 4px 20px rgba(124,58,237,0.18) !important; }
+    .hero-cta:hover { box-shadow: 0 0 72px rgba(124,58,237,0.38), 0 8px 30px rgba(124,58,237,0.25) !important; }
+    .g2-chip { background: rgba(124,58,237,0.08) !important; border-color: rgba(124,58,237,0.18) !important; color: var(--clay-hi) !important; }
+    .cta-bg-text { -webkit-text-stroke: 1px rgba(124,58,237,0.06) !important; }
+    .cta-footer-glow { background: radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%) !important; }
+  </style>
 </head>
 <body>
 
@@ -25,7 +48,7 @@
     <div class="hero-top">
       <div class="hero-badge anim anim-1">
         <span class="dot"></span>
-        Prepared for Niko &nbsp;·&nbsp; VP of Revenue Operations, Retool
+        Prepared for Sarah Mitchell &nbsp;·&nbsp; VP of Revenue Operations, Retool
       </div>
     </div>
 
